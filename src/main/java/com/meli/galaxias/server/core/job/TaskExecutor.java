@@ -1,6 +1,7 @@
 package com.meli.galaxias.server.core.job;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import com.meli.galaxias.server.core.job.model.FactoryGalaxyCalculation;
 import com.meli.galaxias.server.core.job.model.GalaxyCalculation;
@@ -17,25 +18,19 @@ public class TaskExecutor implements Runnable{
 		galaxyCalculations = FactoryGalaxyCalculation.calculationRegistred();
 	}
 
-	public void run() {
+	public void run() {		
 		
-		
-		for (GalaxyCalculation galaxia:galaxyCalculations){
-			galaxyProcess(galaxia);
+		for (GalaxyCalculation galaxy:galaxyCalculations){
+			galaxyProcess(galaxy);
 		}
-			
-
-		
 	}
 
-	private void galaxyProcess(GalaxyCalculation galaxia) {
-		for (int i =galaxia.getFirtDay(); i<=galaxia.getLastDay(); i++){
-			galaxia.getGalaxy().setSimlateDay(i);
-			
-			//calculo.execute(galaxia, i);
+	private void galaxyProcess(GalaxyCalculation gc) {
+		for (int i =gc.getFirtDay(); i<=gc.getLastDay(); i++){
+			gc.getGalaxy().setSimlateDay(i);
+			for (ICalculo calculo:gc.getCalculo()){
+				calculo.execute(gc.getGalaxy(), i);
+			}
 		}
-		
 	}
-	
-
 }
