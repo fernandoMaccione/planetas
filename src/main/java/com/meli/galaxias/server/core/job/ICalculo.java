@@ -1,5 +1,8 @@
 package com.meli.galaxias.server.core.job;
 
+import com.meli.galaxias.common.dto.CalculationPredictionDTO;
+
 public interface ICalculo {
-	public void execute(ICalculable galaxy, int i);
+	public CalculationPredictionDTO execute(ICalculable galaxy, int i);
+	public String getCode ();
 }
