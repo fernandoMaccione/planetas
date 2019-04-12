@@ -1,7 +1,7 @@
 package com.meli.galaxias.server.core.job;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.function.Predicate;
 
 import com.meli.galaxias.common.dto.CalculationPredictionDTO;
 import com.meli.galaxias.server.core.job.model.FactoryGalaxyCalculation;
@@ -22,14 +22,14 @@ public class TaskExecutor implements Runnable{
 	public void run() {		
 		
 		for (GalaxyCalculation galaxy:galaxyCalculations){
-			List<CalculationPredictionDTO> result = galaxy.executeProcess();
+			HashMap<String, List<CalculationPredictionDTO>> result = galaxy.executeProcess();
 			saveCalculation(result);
 		}
 	
 	}
 
-	private void saveCalculation(List<CalculationPredictionDTO> result) {
-		//Guardo en la base de datos
+	private void saveCalculation(HashMap<String, List<CalculationPredictionDTO>> result) {
+		
 		
 	}
 
