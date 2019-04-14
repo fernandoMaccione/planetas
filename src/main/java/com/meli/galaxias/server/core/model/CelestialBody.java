@@ -5,6 +5,11 @@ import java.awt.Point;
 public class CelestialBody {
 	private String code;
 	private Point position;
+	
+	public CelestialBody(){
+		position = new Point();
+	}
+	
 	public String getCode() {
 		return code;
 	}
@@ -19,6 +24,7 @@ public class CelestialBody {
 	}
 	
 	protected CelestialBody (String code){
+		this();
 		this.code = code;
 	}
 }

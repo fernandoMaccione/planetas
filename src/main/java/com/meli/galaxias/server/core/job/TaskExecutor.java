@@ -29,7 +29,12 @@ public class TaskExecutor implements Runnable{
 	}
 
 	private void saveCalculation(HashMap<String, List<CalculationPredictionDTO>> result) {
-		
+		for (List<CalculationPredictionDTO> listaCalculos:result.values()){
+			for (CalculationPredictionDTO dto:listaCalculos){
+				System.out.println("Dia inicial: " + String.valueOf(dto.getDay()) + 
+						" Ultimo dia: " + String.valueOf(dto.getLastDay()) + " resultado: " + dto.getResult());
+			}
+		}
 		
 	}
 

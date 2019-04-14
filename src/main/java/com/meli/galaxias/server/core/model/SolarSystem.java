@@ -1,13 +1,14 @@
 package com.meli.galaxias.server.core.model;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.meli.galaxias.server.core.job.ICalculable;
 
 public  class SolarSystem implements ICalculable{
 	private String name;
 	private Sun sun;
-	protected HashMap<String, Planet> planets;
+	protected List<Planet> planets;
 	
 	public String getName() {
 		return name;
@@ -15,10 +16,10 @@ public  class SolarSystem implements ICalculable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public HashMap<String, Planet> getPlanets() {
+	public List<Planet> getPlanets() {
 		return planets;
 	}
-	public void setPlanets(HashMap<String, Planet> planets) {
+	public void setPlanets(List<Planet> planets) {
 		this.planets = planets;
 	}
 
@@ -30,9 +31,13 @@ public  class SolarSystem implements ICalculable{
 		return sun;
 	}
 	public void setSimlateDay(long numberDay) {
-		for (Planet p:planets.values()){
+		for (Planet p:planets){
 			p.setDay(numberDay);
 		}
 		
+	}
+	public String getCode() {
+		// TODO Auto-generated method stub
+		return this.name;
 	}
 }

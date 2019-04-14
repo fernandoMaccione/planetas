@@ -1,5 +1,6 @@
 package com.meli.galaxias.server.galaxiaLejana;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.meli.galaxias.common.Config;
@@ -14,10 +15,10 @@ public class GalaxiaLejana extends SolarSystem{
 	public GalaxiaLejana() {
 		super(Config.GALAXIA_LEJANA);
 		
-		planets= new HashMap<String, Planet>();
-		planets.put(Config.BETASOIDES_NAME, new Betasoides());
-		planets.put(Config.FERENGIS_NAME, new Ferengis());
-		planets.put(Config.VULCANOS_NAME, new Vulcanos());
+		planets= new ArrayList<Planet>();
+		planets.add(new Betasoides());
+		planets.add(new Ferengis());
+		planets.add(new Vulcanos());
 	}
 	
 }
