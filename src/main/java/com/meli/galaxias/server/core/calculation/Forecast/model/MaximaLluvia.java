@@ -50,8 +50,8 @@ public class MaximaLluvia implements ICalculoForecast{
 		Result resultado = new Result();
 		resultado.setMatch(true);
 		resultado.setDay(day);
-		resultado.setMessage("Maxima Lluvia");
-		return null;
+		resultado.setMessage("Maxima Lluvia" + String.valueOf(perimetroMaximo));
+		return resultado;
 	}
 
 }

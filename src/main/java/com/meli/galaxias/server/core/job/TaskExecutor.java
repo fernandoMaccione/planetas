@@ -23,7 +23,7 @@ public class TaskExecutor implements Runnable{
 		
 		for (GalaxyCalculation galaxy:galaxyCalculations){
 			HashMap<String, List<CalculationPredictionDTO>> result = galaxy.executeProcess();
-			//saveCalculation(result);
+			saveCalculation(result);
 		}
 	
 	}

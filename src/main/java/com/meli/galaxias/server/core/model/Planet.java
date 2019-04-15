@@ -24,8 +24,7 @@ public abstract class Planet extends CelestialBody{
 		this.radio = radio;
 	}
 
-	public void setDay(double numberDay) {
-		System.out.println("Calculando posicion para el dia: " + String.valueOf(numberDay));
+	public void setDay(double numberDay) {		
 		double gredees = gredeesPerDay * numberDay;
 		double x = Math.sin(gredees) * radio;
 		double y = Math.cos(gredees) * radio;

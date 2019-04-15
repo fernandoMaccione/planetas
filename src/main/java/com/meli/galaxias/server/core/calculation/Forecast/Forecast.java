@@ -21,19 +21,23 @@ public class Forecast implements ICalculo {
 	}
 	
 	public CalculationPredictionDTO execute(ICalculable galaxy, int day) {
-		galaxy.setSimlateDay(day);
 		
-		Result result= null; 
-		for (int i = Config.PRECICION_CALCULE; i>1; i--){
-			galaxy.setSimlateDay(day + (1/ i));
+		Result result= null;
+		boolean calculado = false;
+		double precicion = (1/ (double)Config.PRECICION_CALCULE);
+		for (double i = day; i<day+1; i = i + precicion){
+			galaxy.setSimlateDay(i);
 			for (ICalculoForecast calculo:calculos){
 				Result aux = calculo.execute(galaxy, day, result);
 				if (aux != null)
 					result = aux;
-				if (result.isMatch() && calculo.excluirOtros()){ //
+				if (result.isMatch() && calculo.excluirOtros()){ 
+					calculado = true;
 					break;
 				}
 			}
+			if (calculado)
+				break;
 		}
 		
 		CalculationPredictionDTO dto = new CalculationPredictionDTO();

@@ -1,5 +1,9 @@
 package com.meli.galaxias.server.core.calculation.Forecast.model;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+
 import com.meli.galaxias.server.core.job.ICalculable;
 import com.meli.galaxias.server.core.model.CelestialBody;
 
@@ -17,18 +21,29 @@ public class Alineacion implements ICalculoForecast {
 			boolean conElSol = calculoRecta (galaxi.getSun(), galaxi.getPlanets().get(0),galaxi.getPlanets().get(1));
 			if (conElSol){
 				resultado.setMessage("Clima Optimo");
+				//System.out.println("Clima Optimo dia; " + String.valueOf(day));
 			}else{
 				resultado.setMessage("Sequia");
+				//System.out.println("Sequia dia; " + String.valueOf(day));
 			}
 		}
 		return resultado;
 	}
 
 	private boolean calculoRecta (CelestialBody c1, CelestialBody c2, CelestialBody c3){
-		double proporcionX = (c2.getPosition().getX() - c1.getPosition().getX()) / (c3.getPosition().getX() - c2.getPosition().getX());
-		double proporcionY = (c2.getPosition().getY() - c1.getPosition().getY()) / (c3.getPosition().getY() - c2.getPosition().getY());
-		System.out.println("Eje X: " + String.valueOf(proporcionX) + " Eje Y: "+ String.valueOf(proporcionY));
-		return proporcionX == proporcionY;
+		double tangecteEnC1 = 0;
+		if ((c2.getPosition().getX() - c1.getPosition().getX())!=0)
+			tangecteEnC1 = (c2.getPosition().getY() - c1.getPosition().getY()) / (c2.getPosition().getX() - c1.getPosition().getX());
+		
+		double tangenteEnC2 = 0;
+		if ((c3.getPosition().getX() - c2.getPosition().getX()) !=0)
+			tangenteEnC2 = (c2.getPosition().getY() - c3.getPosition().getY()) / (c3.getPosition().getX() - c2.getPosition().getX());
+		tangecteEnC1 = Math.round(tangecteEnC1 * 1000d)/1000d; 
+		tangenteEnC2 = Math.round(tangenteEnC2 * 1000d)/1000d;
+		
+		//System.out.println("Eje X: " + String.valueOf(tangecteEnC1) + " Eje Y: "+ String.valueOf(tangenteEnC2));
+		
+		return tangecteEnC1 == tangenteEnC2;
 	}
 
 	public boolean excluirOtros() {

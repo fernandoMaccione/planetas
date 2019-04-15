@@ -23,5 +23,5 @@ public class Config {
 	public static final int FIRTS_DAY = 0;
 	public static final int LAST_DAY = TIME_PERIOD + FIRTS_DAY;
 	
-	public static final int PRECICION_CALCULE = 24 * 60; //cada un minuto chequeo la posicion de los planetas
+	public static final int PRECICION_CALCULE = 1000; //intervalo por dia que se toma en cuenta para realizar los calculos
 }
