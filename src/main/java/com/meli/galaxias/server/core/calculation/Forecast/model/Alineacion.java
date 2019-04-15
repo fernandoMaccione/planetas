@@ -4,13 +4,13 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
-import com.meli.galaxias.server.core.job.ICalculable;
+import com.meli.galaxias.server.core.job.ISolarSystem;
 import com.meli.galaxias.server.core.model.CelestialBody;
 
 public class Alineacion implements ICalculoForecast {
 
 
-	public Result execute(ICalculable galaxi, long day, Result anterior) {
+	public Result execute(ISolarSystem galaxi, long day, Result anterior) {
 		boolean alineados = false;
 		Result resultado = new Result();
 		for (int i = 0; i < galaxi.getPlanets().size() - 2; i++){

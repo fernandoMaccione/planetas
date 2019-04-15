@@ -3,7 +3,7 @@ package com.meli.galaxias.server.core.calculation.Forecast.model;
 import java.awt.Point;
 import java.util.List;
 
-import com.meli.galaxias.server.core.job.ICalculable;
+import com.meli.galaxias.server.core.job.ISolarSystem;
 import com.meli.galaxias.server.core.model.Planet;
 
 public class MaximaLluvia implements ICalculoForecast{
@@ -15,7 +15,7 @@ public class MaximaLluvia implements ICalculoForecast{
 		day = 0;
 	}
 	
-	public Result execute(ICalculable galaxi, long day, Result anterior) {
+	public Result execute(ISolarSystem galaxi, long day, Result anterior) {
 		
 		if (anterior.isMatch()){//este calculo requiere que el calculo anterior que se ejecuta sea PeriodoLuvia
 			double perimetro=0;

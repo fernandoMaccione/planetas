@@ -19,7 +19,7 @@ public class Config {
 	public static final String GALAXIA_LEJANA = "ANDROMEDA";
 	public static final int DAY_PER_YEAR = 365;
 	
-	public static final int TIME_PERIOD = DAY_PER_YEAR * 10;
+	public static final int TIME_PERIOD = DAY_PER_YEAR * 3;
 	public static final int FIRTS_DAY = 0;
 	public static final int LAST_DAY = TIME_PERIOD + FIRTS_DAY;
 	

@@ -3,9 +3,9 @@ package com.meli.galaxias.server.core.model;
 import java.util.HashMap;
 import java.util.List;
 
-import com.meli.galaxias.server.core.job.ICalculable;
+import com.meli.galaxias.server.core.job.ISolarSystem;
 
-public  class SolarSystem implements ICalculable{
+public  class SolarSystem implements ISolarSystem{
 	private String name;
 	private Sun sun;
 	protected List<Planet> planets;

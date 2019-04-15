@@ -3,10 +3,17 @@ package com.meli.galaxias.common.dto;
 public class CalculationPredictionDTO {
 	private String codeCalculate;
 	private String codeGalaxy;
+	private long idProcess;
 	private long day;
 	private long lastDay;
 	private String result;
 	
+	public long getIdProcess() {
+		return idProcess;
+	}
+	public void setIdProcess(long idProcess) {
+		this.idProcess = idProcess;
+	}
 	public String getCodeCalculate() {
 		return codeCalculate;
 	}

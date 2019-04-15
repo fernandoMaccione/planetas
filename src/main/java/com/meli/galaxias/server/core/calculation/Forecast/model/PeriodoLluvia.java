@@ -3,12 +3,12 @@ package com.meli.galaxias.server.core.calculation.Forecast.model;
 import java.awt.Point;
 import java.awt.Polygon;
 
-import com.meli.galaxias.server.core.job.ICalculable;
+import com.meli.galaxias.server.core.job.ISolarSystem;
 import com.meli.galaxias.server.core.model.Planet;
 
 public class PeriodoLluvia implements ICalculoForecast {
 
-	public Result execute(ICalculable galaxi, long day, Result anterior) {
+	public Result execute(ISolarSystem galaxi, long day, Result anterior) {
 		Polygon poligono = new Polygon();
 		for (Planet planeta:galaxi.getPlanets()){
 			Point punto = planeta.getPosition();

@@ -10,7 +10,7 @@ import com.meli.galaxias.server.core.calculation.Forecast.model.ICalculoForecast
 import com.meli.galaxias.server.core.calculation.Forecast.model.MaximaLluvia;
 import com.meli.galaxias.server.core.calculation.Forecast.model.PeriodoLluvia;
 import com.meli.galaxias.server.core.calculation.Forecast.model.Result;
-import com.meli.galaxias.server.core.job.ICalculable;
+import com.meli.galaxias.server.core.job.ISolarSystem;
 import com.meli.galaxias.server.core.job.ICalculo;
 
 public class Forecast implements ICalculo {
@@ -20,7 +20,7 @@ public class Forecast implements ICalculo {
 		registryCalculos();
 	}
 	
-	public CalculationPredictionDTO execute(ICalculable galaxy, int day) {
+	public CalculationPredictionDTO execute(ISolarSystem galaxy, int day) {
 		
 		Result result= null;
 		boolean calculado = false;
@@ -60,7 +60,7 @@ public class Forecast implements ICalculo {
 		return "FORECAST";
 	}
 
-	public List<CalculationPredictionDTO> getFinalResult(ICalculable galaxy) {
+	public List<CalculationPredictionDTO> getFinalResult(ISolarSystem galaxy) {
 		List<CalculationPredictionDTO> resultados = new ArrayList<CalculationPredictionDTO>();
 		for (ICalculoForecast calculo:calculos){
 			Result r = calculo.getFinalResult();

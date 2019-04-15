@@ -5,7 +5,7 @@ import java.util.List;
 import com.meli.galaxias.common.dto.CalculationPredictionDTO;
 
 public interface ICalculo {
-	public CalculationPredictionDTO execute(ICalculable galaxy, int day);
+	public CalculationPredictionDTO execute(ISolarSystem galaxy, int day);
 	public String getCode ();
-	public List<CalculationPredictionDTO> getFinalResult(ICalculable galaxy);
+	public List<CalculationPredictionDTO> getFinalResult(ISolarSystem galaxy);
 }
