@@ -16,9 +16,10 @@ public class GalaxiaLejana extends SolarSystem{
 		super(Config.GALAXIA_LEJANA);
 		
 		planets= new ArrayList<Planet>();
-		planets.add(new Betasoides());
 		planets.add(new Ferengis());
 		planets.add(new Vulcanos());
+		planets.add(new Betasoides());		
+		
 	}
 	
 }

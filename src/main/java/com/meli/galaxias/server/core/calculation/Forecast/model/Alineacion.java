@@ -1,9 +1,5 @@
 package com.meli.galaxias.server.core.calculation.Forecast.model;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
-
 import com.meli.galaxias.server.core.job.ISolarSystem;
 import com.meli.galaxias.server.core.model.CelestialBody;
 
@@ -37,7 +33,7 @@ public class Alineacion implements ICalculoForecast {
 		
 		double tangenteEnC2 = 0;
 		if ((c3.getPosition().getX() - c2.getPosition().getX()) !=0)
-			tangenteEnC2 = (c2.getPosition().getY() - c3.getPosition().getY()) / (c3.getPosition().getX() - c2.getPosition().getX());
+			tangenteEnC2 = (c3.getPosition().getY() - c2.getPosition().getY()) / (c3.getPosition().getX() - c2.getPosition().getX());
 		tangecteEnC1 = Math.round(tangecteEnC1 * 1000d)/1000d; 
 		tangenteEnC2 = Math.round(tangenteEnC2 * 1000d)/1000d;
 		

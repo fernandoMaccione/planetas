@@ -1,10 +1,10 @@
 package com.meli.galaxias.server.core.calculation.Forecast.model;
 
-import java.awt.Point;
 import java.awt.Polygon;
 
 import com.meli.galaxias.server.core.job.ISolarSystem;
 import com.meli.galaxias.server.core.model.Planet;
+import com.meli.galaxias.server.core.model.Point;
 
 public class PeriodoLluvia implements ICalculoForecast {
 
@@ -15,7 +15,7 @@ public class PeriodoLluvia implements ICalculoForecast {
 			poligono.addPoint((int)punto.getX(), (int)punto.getY());
 		}
 		
-		boolean esLLuvia = poligono.contains(galaxi.getSun().getPosition());
+		boolean esLLuvia = poligono.contains(galaxi.getSun().getPosition().getX(), galaxi.getSun().getPosition().getY());
 		
 		Result resultado = new Result();
 		if (esLLuvia){

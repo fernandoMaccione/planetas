@@ -56,6 +56,10 @@ public class SolarSytemProcess {
 		}		
 	}
 	
+	public List<CalculationPredictionDTO> getResult(String codeCal){
+		return result.get(codeCal);
+	}
+	
 	private List<CalculationPredictionDTO> generate(ICalculo calculo) {		
 		
 		List<CalculationPredictionDTO> res = new ArrayList<CalculationPredictionDTO>();

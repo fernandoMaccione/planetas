@@ -25,7 +25,7 @@ public class Forecast implements ICalculo {
 		Result result= null;
 		boolean calculado = false;
 		double precicion = (1/ (double)Config.PRECICION_CALCULE);
-		for (double i = day; i<day+1; i = i + precicion){
+		for (double i = day; i<day+.95; i = i + precicion){
 			galaxy.setSimlateDay(i);
 			for (ICalculoForecast calculo:calculos){
 				Result aux = calculo.execute(galaxy, day, result);

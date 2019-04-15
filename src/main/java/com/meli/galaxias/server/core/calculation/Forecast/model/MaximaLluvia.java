@@ -1,10 +1,10 @@
 package com.meli.galaxias.server.core.calculation.Forecast.model;
 
-import java.awt.Point;
 import java.util.List;
 
 import com.meli.galaxias.server.core.job.ISolarSystem;
 import com.meli.galaxias.server.core.model.Planet;
+import com.meli.galaxias.server.core.model.Point;
 
 public class MaximaLluvia implements ICalculoForecast{
 	double perimetroMaximo;
