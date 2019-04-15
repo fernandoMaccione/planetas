@@ -30,7 +30,7 @@ public  class SolarSystem implements ICalculable{
 	public Sun getSun() {
 		return sun;
 	}
-	public void setSimlateDay(long numberDay) {
+	public void setSimlateDay(double numberDay) {
 		for (Planet p:planets){
 			p.setDay(numberDay);
 		}

@@ -27,7 +27,7 @@ public class Alineacion implements ICalculoForecast {
 	private boolean calculoRecta (CelestialBody c1, CelestialBody c2, CelestialBody c3){
 		double proporcionX = (c2.getPosition().getX() - c1.getPosition().getX()) / (c3.getPosition().getX() - c2.getPosition().getX());
 		double proporcionY = (c2.getPosition().getY() - c1.getPosition().getY()) / (c3.getPosition().getY() - c2.getPosition().getY());
-		
+		System.out.println("Eje X: " + String.valueOf(proporcionX) + " Eje Y: "+ String.valueOf(proporcionY));
 		return proporcionX == proporcionY;
 	}
 

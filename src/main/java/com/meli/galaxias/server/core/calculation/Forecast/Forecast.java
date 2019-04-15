@@ -3,6 +3,7 @@ package com.meli.galaxias.server.core.calculation.Forecast;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.meli.galaxias.common.Config;
 import com.meli.galaxias.common.dto.CalculationPredictionDTO;
 import com.meli.galaxias.server.core.calculation.Forecast.model.Alineacion;
 import com.meli.galaxias.server.core.calculation.Forecast.model.ICalculoForecast;
@@ -23,12 +24,15 @@ public class Forecast implements ICalculo {
 		galaxy.setSimlateDay(day);
 		
 		Result result= null; 
-		for (ICalculoForecast calculo:calculos){
-			Result aux = calculo.execute(galaxy, day, result);
-			if (aux != null)
-				result = aux;
-			if (result.isMatch() && calculo.excluirOtros()){ //
-				break;
+		for (int i = Config.PRECICION_CALCULE; i>1; i--){
+			galaxy.setSimlateDay(day + (1/ i));
+			for (ICalculoForecast calculo:calculos){
+				Result aux = calculo.execute(galaxy, day, result);
+				if (aux != null)
+					result = aux;
+				if (result.isMatch() && calculo.excluirOtros()){ //
+					break;
+				}
 			}
 		}
 		
