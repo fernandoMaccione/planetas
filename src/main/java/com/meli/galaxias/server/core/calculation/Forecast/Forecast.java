@@ -14,8 +14,9 @@ import com.meli.galaxias.server.core.job.ISolarSystem;
 import com.meli.galaxias.server.core.job.ICalculo;
 
 public class Forecast implements ICalculo {
-	private List<ICalculoForecast> calculos;
+	public static final String CODE = "FORECAST";
 	
+	private List<ICalculoForecast> calculos;
 	public Forecast(){
 		registryCalculos();
 	}
@@ -57,7 +58,7 @@ public class Forecast implements ICalculo {
 	}
 
 	public String getCode() {
-		return "FORECAST";
+		return CODE;
 	}
 
 	public List<CalculationPredictionDTO> getFinalResult(ISolarSystem galaxy) {

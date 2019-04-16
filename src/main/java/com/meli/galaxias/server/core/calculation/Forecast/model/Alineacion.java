@@ -16,10 +16,10 @@ public class Alineacion implements ICalculoForecast {
 			resultado.setMatch(true);
 			boolean conElSol = calculoRecta (galaxi.getSun(), galaxi.getPlanets().get(0),galaxi.getPlanets().get(1));
 			if (conElSol){
-				resultado.setMessage("Clima Optimo");
+				resultado.setMessage(Result.CLIMA_OPTIMO);
 				//System.out.println("Clima Optimo dia; " + String.valueOf(day));
 			}else{
-				resultado.setMessage("Sequia");
+				resultado.setMessage(Result.CLIMA_SEQUIA);
 				//System.out.println("Sequia dia; " + String.valueOf(day));
 			}
 		}

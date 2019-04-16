@@ -20,10 +20,10 @@ public class PeriodoLluvia implements ICalculoForecast {
 		Result resultado = new Result();
 		if (esLLuvia){
 			resultado.setMatch(true);
-			resultado.setMessage("Periodo de lluvia");
+			resultado.setMessage(Result.CLIMA_LLUVIA);
 		}else{
 			resultado.setMatch(false);
-			resultado.setMessage("No hay lluvia");
+			resultado.setMessage(Result.CLIMA_SOL);
 		}
 			
 		return resultado;

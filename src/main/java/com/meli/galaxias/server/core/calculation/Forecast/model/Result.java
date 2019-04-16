@@ -1,6 +1,12 @@
 package com.meli.galaxias.server.core.calculation.Forecast.model;
 
 public class Result {
+	public static final String CLIMA_SEQUIA = "Sequia";
+	public static final String CLIMA_OPTIMO = "Optimo";
+	public static final String CLIMA_LLUVIA_INTENSA = "Lluvia Intensa";
+	public static final String CLIMA_LLUVIA = "Lluvia";
+	public static final String CLIMA_SOL = "No Lluvia";
+	
 	private boolean match;
 	private long day;
 	private String message;

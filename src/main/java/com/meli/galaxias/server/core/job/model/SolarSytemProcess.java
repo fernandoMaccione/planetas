@@ -3,11 +3,12 @@ package com.meli.galaxias.server.core.job.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.meli.galaxias.common.CalculationPredictionDAO;
 import com.meli.galaxias.common.dto.CalculationPredictionDTO;
-import com.meli.galaxias.server.core.job.ISolarSystem;
 import com.meli.galaxias.server.core.job.ICalculo;
+import com.meli.galaxias.server.core.job.ISolarSystem;
 
 public class SolarSytemProcess {
 	private long idProcess;
@@ -92,8 +93,36 @@ public class SolarSytemProcess {
 			r.setLastDay(r.getDay());
 			cResults.add(r);
 		}
-		 
 	}
 	
+	public List<CalculationPredictionDTO> getPrediction(String codeCalulo, String filter){
+		List<CalculationPredictionDTO> list = result.get(codeCalulo);
+		List<CalculationPredictionDTO> listFilter = list.parallelStream().filter(t -> t.getResult() == filter)
+				.collect(Collectors.toList());
+		return listFilter;
+	}
+	
+	public CalculationPredictionDTO getOnePrediction(String codeCalulo, String filter){
+		List<CalculationPredictionDTO> list = result.get(codeCalulo);
+		CalculationPredictionDTO listFilter = list.parallelStream().filter(t -> t.getResult() == filter)
+				.findFirst()
+				.orElse(null);
+		return listFilter;
+	}
+	
+	public CalculationPredictionDTO getByDay(String codeCalulo, int day){
+		List<CalculationPredictionDTO> list = result.get(codeCalulo);
+		CalculationPredictionDTO listFilter = list.parallelStream().filter(t -> day >= t.getDay() && day <= t.getLastDay()  )
+				.findFirst()
+				.orElse(null);
+				
+		return listFilter;
+	}
 
+	public Long countPeriod(String codeCalulo, String filter){
+		List<CalculationPredictionDTO> list = result.get(codeCalulo);
+		long count = list.parallelStream().filter(t -> t.getResult() == filter)
+				.count();
+		return count;
+	}
 }

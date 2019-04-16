@@ -1,7 +1,6 @@
 package com.meli.galaxias.server.galaxiaLejana;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import com.meli.galaxias.common.Config;
 import com.meli.galaxias.server.core.model.Planet;
