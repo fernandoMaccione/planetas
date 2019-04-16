@@ -17,13 +17,17 @@ public class ServiceCalculation {
 	private ServiceCalculation(){
 		initialize();
 	}
+	
+	public static void init(){
+		getInstance();
+	}
+	
 	public static  ServiceCalculation getInstance(){
 		if (instance == null){
 			synchronized(ServiceCalculation.class){
 				instance = new ServiceCalculation();
 			}
 		}
-		
 		return instance;
 	}
 	
@@ -51,6 +55,5 @@ public class ServiceCalculation {
 			return null;
 		}
 	}
-	
 	
 }

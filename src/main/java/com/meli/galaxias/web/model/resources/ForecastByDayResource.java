@@ -1,4 +1,4 @@
-package com.meli.galaxias.web.model;
+package com.meli.galaxias.web.model.resources;
 
 import com.google.gson.JsonObject;
 import com.meli.galaxias.common.Config;
@@ -6,25 +6,28 @@ import com.meli.galaxias.common.dto.CalculationPredictionDTO;
 import com.meli.galaxias.server.core.calculation.Forecast.Forecast;
 import com.meli.galaxias.server.core.job.ServiceCalculation;
 import com.meli.galaxias.server.core.job.model.SolarSytemProcess;
+import com.meli.galaxias.web.dto.ForecastByDayDTO;
+import com.meli.galaxias.web.model.Process;
 
 import spark.Request;
 import spark.Response;
 
-public class ForecastByDay implements Process {
+public class ForecastByDayResource implements Process {
 	private ServiceCalculation service;
 	
-	public ForecastByDay(ServiceCalculation service){
+	public ForecastByDayResource(){
 		this.service = ServiceCalculation.getInstance();
 	}
 	
 	@Override
 	public Object get(Request req, Response res, JsonObject json) throws Exception {
-		Integer dia = Integer.parseInt(req.params("dia")); 
+		Integer day = Integer.parseInt(req.queryParams("dia")); 
 		SolarSytemProcess galaxiaLejana = service.getSolarSystem(Config.GALAXIA_LEJANA);
-		CalculationPredictionDTO prediction = galaxiaLejana.getByDay(Forecast.CODE, dia);
-		json.addProperty("dia", dia);
-		json.addProperty("clima", prediction.getResult());
-		return null;
+		CalculationPredictionDTO prediction = galaxiaLejana.getByDay(Forecast.CODE, day);
+		ForecastByDayDTO response = new ForecastByDayDTO();
+		response.setDay(day);
+		response.setForecast(prediction.getResult());
+		return response;
 	}
 
 	@Override

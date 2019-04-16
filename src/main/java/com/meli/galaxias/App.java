@@ -6,7 +6,7 @@ import com.meli.galaxias.server.core.calculation.Forecast.Forecast;
 import com.meli.galaxias.server.core.calculation.Forecast.model.Result;
 import com.meli.galaxias.server.core.job.ServiceCalculation;
 import com.meli.galaxias.server.core.job.model.SolarSytemProcess;
-import com.meli.galaxias.web.ApiForecast;
+import com.meli.galaxias.web.Api;
 
 /**
  * Hello world!
@@ -17,8 +17,17 @@ public class App
     public static void main( String[] args )
     {
         System.out.println( "Iniciando proceso..." );
-        ServiceCalculation task = ServiceCalculation.getInstance();
+        ServiceCalculation.init();
         System.out.println( "Proceso ya iniciado..." );
+        
+        testService();
+        
+        //Levanto el server
+        Api.registerServer();
+    }
+
+	private static void testService() {
+        ServiceCalculation task = ServiceCalculation.getInstance();
         SolarSytemProcess process = task.getSolarSystem(Config.GALAXIA_LEJANA);
 
         for (CalculationPredictionDTO result:process.getResult(Forecast.CODE)){
@@ -31,7 +40,6 @@ public class App
         CalculationPredictionDTO picoMaximo = process.getOnePrediction(Forecast.CODE, Result.CLIMA_LLUVIA_INTENSA);
         System.out.println("Dia de pico maximo de lluvia: "+ String.valueOf(picoMaximo.getDay()));
         System.out.println("Cantidad de Periodos de condiciones optimas: " + String.valueOf(process.countPeriod(Forecast.CODE, Result.CLIMA_OPTIMO)));
-        
-        ApiForecast.registerServer(task);
-    }
+		
+	}
 }
