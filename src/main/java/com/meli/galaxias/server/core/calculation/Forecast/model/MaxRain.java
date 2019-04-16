@@ -2,22 +2,26 @@ package com.meli.galaxias.server.core.calculation.Forecast.model;
 
 import java.util.List;
 
-import com.meli.galaxias.server.core.job.ISolarSystem;
+import com.meli.galaxias.server.core.exception.ForecastExecption;
+import com.meli.galaxias.server.core.exception.MaxRainExecption;
+import com.meli.galaxias.server.core.job.model.ISolarSystem;
 import com.meli.galaxias.server.core.model.Planet;
 import com.meli.galaxias.server.core.model.Point;
 
-public class MaximaLluvia implements ICalculoForecast{
+public class MaxRain implements ICalculateForecast{
 	double perimetroMaximo;
 	long day;
 	
-	public MaximaLluvia(){
+	public MaxRain(){
 		perimetroMaximo = 0;
 		day = 0;
 	}
 	
-	public Result execute(ISolarSystem galaxi, long day, Result anterior) {
+	public Result execute(ISolarSystem galaxi, long day, Result anterior) throws ForecastExecption {
 		
 		if (anterior.isMatch()){//este calculo requiere que el calculo anterior que se ejecuta sea PeriodoLuvia
+			if (galaxi.getPlanets().size()<3)
+				throw new MaxRainExecption("Do not execute this calculator with minus three planet.");
 			double perimetro=0;
 			List<Planet> planetas = galaxi.getPlanets();
 			for (int i = 0; i< planetas.size() - 1; i++){

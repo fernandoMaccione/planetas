@@ -2,11 +2,11 @@ package com.meli.galaxias.server.core.calculation.Forecast.model;
 
 import java.awt.Polygon;
 
-import com.meli.galaxias.server.core.job.ISolarSystem;
+import com.meli.galaxias.server.core.job.model.ISolarSystem;
 import com.meli.galaxias.server.core.model.Planet;
 import com.meli.galaxias.server.core.model.Point;
 
-public class PeriodoLluvia implements ICalculoForecast {
+public class Rain implements ICalculateForecast {
 
 	public Result execute(ISolarSystem galaxi, long day, Result anterior) {
 		Polygon poligono = new Polygon();

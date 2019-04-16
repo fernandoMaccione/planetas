@@ -3,6 +3,7 @@ import static spark.Spark.get;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.meli.galaxias.server.core.exception.NotFoundException;
 import com.meli.galaxias.web.model.Process;
 import com.meli.galaxias.web.model.resources.ForecastByDayResource;
 import com.meli.galaxias.web.model.resources.ForecastResource;
@@ -28,6 +29,13 @@ public class Api {
 				json.add("Respuesta", oGson.toJsonTree(r));
 	            res.status(200);
 	            res.type("application/json");
+			}catch (NotFoundException e) {
+	            res.status(404);
+	            res.type("application/json");
+				errores = e.getLocalizedMessage();
+				json.addProperty("error", errores);
+				//LogSRV.Log(ex, LogCTE.LEVEL_TRACE);
+			
 			}catch (Exception e) {
 	            res.status(500);
 	            res.type("application/json");

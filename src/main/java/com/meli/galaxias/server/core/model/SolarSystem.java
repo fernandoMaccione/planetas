@@ -3,7 +3,7 @@ package com.meli.galaxias.server.core.model;
 import java.util.HashMap;
 import java.util.List;
 
-import com.meli.galaxias.server.core.job.ISolarSystem;
+import com.meli.galaxias.server.core.job.model.ISolarSystem;
 
 public  class SolarSystem implements ISolarSystem{
 	private String name;

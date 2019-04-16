@@ -13,14 +13,13 @@ import spark.Request;
 import spark.Response;
 
 public class ForecastByDayResource implements Process {
-	private ServiceCalculation service;
-	
 	public ForecastByDayResource(){
-		this.service = ServiceCalculation.getInstance();
+		
 	}
 	
 	@Override
 	public Object get(Request req, Response res, JsonObject json) throws Exception {
+		ServiceCalculation service = ServiceCalculation.getInstance();
 		Integer day = Integer.parseInt(req.queryParams("dia")); 
 		SolarSytemProcess galaxiaLejana = service.getSolarSystem(Config.GALAXIA_LEJANA);
 		CalculationPredictionDTO prediction = galaxiaLejana.getByDay(Forecast.CODE, day);

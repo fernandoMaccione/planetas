@@ -3,6 +3,8 @@ package com.meli.galaxias.server.core.job;
 import java.util.HashMap;
 import java.util.List;
 
+import com.meli.galaxias.server.core.exception.NotFoundException;
+import com.meli.galaxias.server.core.exception.ServiceException;
 import com.meli.galaxias.server.core.job.model.FactoryGalaxyCalculation;
 import com.meli.galaxias.server.core.job.model.SolarSytemProcess;
 
@@ -14,15 +16,10 @@ public class ServiceCalculation {
  */
 	
 	private static ServiceCalculation instance;
-	private ServiceCalculation(){
+	private ServiceCalculation() throws ServiceException{
 		initialize();
 	}
-	
-	public static void init(){
-		getInstance();
-	}
-	
-	public static  ServiceCalculation getInstance(){
+	public static  ServiceCalculation getInstance() throws ServiceException{
 		if (instance == null){
 			synchronized(ServiceCalculation.class){
 				instance = new ServiceCalculation();
@@ -32,7 +29,7 @@ public class ServiceCalculation {
 	}
 	
 	private HashMap<String, SolarSytemProcess> cacheProcess;
-	private void initialize(){
+	private void initialize() throws ServiceException{
 		cacheProcess = new HashMap<String, SolarSytemProcess>();
 		
 		List<SolarSytemProcess> sProcess = FactoryGalaxyCalculation.calculationRegistred();
@@ -48,11 +45,11 @@ public class ServiceCalculation {
 		}
 	}
 	
-	public SolarSytemProcess getSolarSystem(String code){
+	public SolarSytemProcess getSolarSystem(String code) throws NotFoundException{
 		if (cacheProcess.containsKey(code)){
 			return cacheProcess.get(code);
 		}else{
-			return null;
+			throw new NotFoundException("Solar System; " + code + " not exist. ");
 		}
 	}
 	

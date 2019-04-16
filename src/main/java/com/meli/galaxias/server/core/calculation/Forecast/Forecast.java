@@ -5,30 +5,31 @@ import java.util.List;
 
 import com.meli.galaxias.common.Config;
 import com.meli.galaxias.common.dto.CalculationPredictionDTO;
-import com.meli.galaxias.server.core.calculation.Forecast.model.Alineacion;
-import com.meli.galaxias.server.core.calculation.Forecast.model.ICalculoForecast;
-import com.meli.galaxias.server.core.calculation.Forecast.model.MaximaLluvia;
-import com.meli.galaxias.server.core.calculation.Forecast.model.PeriodoLluvia;
+import com.meli.galaxias.server.core.calculation.Forecast.model.Aligned;
+import com.meli.galaxias.server.core.calculation.Forecast.model.ICalculateForecast;
+import com.meli.galaxias.server.core.calculation.Forecast.model.MaxRain;
+import com.meli.galaxias.server.core.calculation.Forecast.model.Rain;
 import com.meli.galaxias.server.core.calculation.Forecast.model.Result;
-import com.meli.galaxias.server.core.job.ISolarSystem;
-import com.meli.galaxias.server.core.job.ICalculo;
+import com.meli.galaxias.server.core.exception.ForecastExecption;
+import com.meli.galaxias.server.core.job.model.ICalculate;
+import com.meli.galaxias.server.core.job.model.ISolarSystem;
 
-public class Forecast implements ICalculo {
+public class Forecast implements ICalculate {
 	public static final String CODE = "FORECAST";
 	
-	private List<ICalculoForecast> calculos;
+	private List<ICalculateForecast> calculos;
 	public Forecast(){
 		registryCalculos();
 	}
 	
-	public CalculationPredictionDTO execute(ISolarSystem galaxy, int day) {
+	public CalculationPredictionDTO execute(ISolarSystem galaxy, int day) throws ForecastExecption {
 		
 		Result result= null;
 		boolean calculado = false;
 		double precicion = (1/ (double)Config.PRECICION_CALCULE);
 		for (double i = day; i<day+.95; i = i + precicion){
 			galaxy.setSimlateDay(i);
-			for (ICalculoForecast calculo:calculos){
+			for (ICalculateForecast calculo:calculos){
 				Result aux = calculo.execute(galaxy, day, result);
 				if (aux != null)
 					result = aux;
@@ -51,10 +52,10 @@ public class Forecast implements ICalculo {
 	}
 
 	private void registryCalculos() {
-		calculos = new ArrayList<ICalculoForecast>();
-		calculos.add(new Alineacion());
-		calculos.add(new PeriodoLluvia());
-		calculos.add(new MaximaLluvia());
+		calculos = new ArrayList<ICalculateForecast>();
+		calculos.add(new Aligned());
+		calculos.add(new Rain());
+		calculos.add(new MaxRain());
 	}
 
 	public String getCode() {
@@ -63,7 +64,7 @@ public class Forecast implements ICalculo {
 
 	public List<CalculationPredictionDTO> getFinalResult(ISolarSystem galaxy) {
 		List<CalculationPredictionDTO> resultados = new ArrayList<CalculationPredictionDTO>();
-		for (ICalculoForecast calculo:calculos){
+		for (ICalculateForecast calculo:calculos){
 			Result r = calculo.getFinalResult();
 			if (r != null){
 				CalculationPredictionDTO dto = new CalculationPredictionDTO();

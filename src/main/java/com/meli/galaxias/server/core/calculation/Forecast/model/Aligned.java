@@ -1,9 +1,9 @@
 package com.meli.galaxias.server.core.calculation.Forecast.model;
 
-import com.meli.galaxias.server.core.job.ISolarSystem;
+import com.meli.galaxias.server.core.job.model.ISolarSystem;
 import com.meli.galaxias.server.core.model.CelestialBody;
 
-public class Alineacion implements ICalculoForecast {
+public class Aligned implements ICalculateForecast {
 
 
 	public Result execute(ISolarSystem galaxi, long day, Result anterior) {
