@@ -33,7 +33,7 @@ public class Planet extends CelestialBody{
 	    	gredees = 360 + gredees;
 	    }
 	    double radian = Math.toRadians(gredees);
-
+	    //No se po
 	    double y = Math.round(Math.cos(radian) * radio*1000000000000d)/1000000000000d;	
 	    double x = Math.round(Math.sin(radian) * radio*1000000000000d)/1000000000000d;
 

@@ -22,7 +22,7 @@ public  class SolarSystem implements ISolarSystem{
 		this.planets = planets;
 	}
 
-	protected SolarSystem (String name){
+	public SolarSystem (String name){
 		this.name = name;
 		sun = new Sun();
 	}
