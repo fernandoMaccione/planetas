@@ -1,4 +1,4 @@
-package com.meli.galaxias.server.core.job.model;
+package com.meli.galaxias.server.core.service.model;
 
 import java.util.List;
 

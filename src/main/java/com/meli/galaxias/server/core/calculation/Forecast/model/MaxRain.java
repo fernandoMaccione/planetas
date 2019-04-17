@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.meli.galaxias.server.core.exception.ForecastExecption;
 import com.meli.galaxias.server.core.exception.MaxRainExecption;
-import com.meli.galaxias.server.core.job.model.ISolarSystem;
-import com.meli.galaxias.server.core.model.Planet;
-import com.meli.galaxias.server.core.model.Point;
+import com.meli.galaxias.server.core.solarSystem.Planet;
+import com.meli.galaxias.server.core.solarSystem.Point;
+import com.meli.galaxias.server.core.service.model.ISolarSystem;
 
 public class MaxRain implements ICalculateForecast{
 	double perimetroMaximo;

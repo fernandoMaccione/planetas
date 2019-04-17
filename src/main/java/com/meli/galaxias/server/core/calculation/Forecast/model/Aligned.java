@@ -1,7 +1,7 @@
 package com.meli.galaxias.server.core.calculation.Forecast.model;
 
-import com.meli.galaxias.server.core.job.model.ISolarSystem;
-import com.meli.galaxias.server.core.model.CelestialBody;
+import com.meli.galaxias.server.core.service.model.ISolarSystem;
+import com.meli.galaxias.server.core.solarSystem.CelestialBody;
 
 public class Aligned implements ICalculateForecast {
 

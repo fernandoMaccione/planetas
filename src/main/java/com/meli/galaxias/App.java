@@ -5,8 +5,8 @@ import com.meli.galaxias.common.dto.CalculationPredictionDTO;
 import com.meli.galaxias.server.core.calculation.Forecast.Forecast;
 import com.meli.galaxias.server.core.calculation.Forecast.model.Result;
 import com.meli.galaxias.server.core.exception.ServiceException;
-import com.meli.galaxias.server.core.job.ServiceCalculation;
-import com.meli.galaxias.server.core.job.model.SolarSytemProcess;
+import com.meli.galaxias.server.core.service.ServiceCalculation;
+import com.meli.galaxias.server.core.service.model.SolarSytemProcess;
 import com.meli.galaxias.web.Api;
 
 /**

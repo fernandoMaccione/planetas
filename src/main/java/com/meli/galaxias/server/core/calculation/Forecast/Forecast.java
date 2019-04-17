@@ -11,8 +11,8 @@ import com.meli.galaxias.server.core.calculation.Forecast.model.MaxRain;
 import com.meli.galaxias.server.core.calculation.Forecast.model.Rain;
 import com.meli.galaxias.server.core.calculation.Forecast.model.Result;
 import com.meli.galaxias.server.core.exception.ForecastExecption;
-import com.meli.galaxias.server.core.job.model.ICalculate;
-import com.meli.galaxias.server.core.job.model.ISolarSystem;
+import com.meli.galaxias.server.core.service.model.ICalculate;
+import com.meli.galaxias.server.core.service.model.ISolarSystem;
 
 public class Forecast implements ICalculate {
 	public static final String CODE = "FORECAST";

@@ -2,9 +2,9 @@ package com.meli.galaxias.server.core.calculation.Forecast.model;
 
 import java.awt.Polygon;
 
-import com.meli.galaxias.server.core.job.model.ISolarSystem;
-import com.meli.galaxias.server.core.model.Planet;
-import com.meli.galaxias.server.core.model.Point;
+import com.meli.galaxias.server.core.solarSystem.Planet;
+import com.meli.galaxias.server.core.solarSystem.Point;
+import com.meli.galaxias.server.core.service.model.ISolarSystem;
 
 public class Rain implements ICalculateForecast {
 

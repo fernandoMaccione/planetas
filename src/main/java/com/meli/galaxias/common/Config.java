@@ -24,4 +24,6 @@ public class Config {
 	public static final int LAST_DAY = TIME_PERIOD + FIRTS_DAY;
 	
 	public static final int PRECICION_CALCULE = 24  * 60;  //intervalo por dia que se toma en cuenta para realizar los calculos. Cada 1 minuto.
+	
+	public static final int SERVER_PORT = 8080;
 }

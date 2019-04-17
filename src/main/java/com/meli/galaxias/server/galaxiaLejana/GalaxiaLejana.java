@@ -3,8 +3,8 @@ package com.meli.galaxias.server.galaxiaLejana;
 import java.util.ArrayList;
 
 import com.meli.galaxias.common.Config;
-import com.meli.galaxias.server.core.model.Planet;
-import com.meli.galaxias.server.core.model.SolarSystem;
+import com.meli.galaxias.server.core.solarSystem.Planet;
+import com.meli.galaxias.server.core.solarSystem.SolarSystem;
 import com.meli.galaxias.server.galaxiaLejana.planet.Betasoides;
 import com.meli.galaxias.server.galaxiaLejana.planet.Ferengis;
 import com.meli.galaxias.server.galaxiaLejana.planet.Vulcanos;
