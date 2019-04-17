@@ -9,11 +9,11 @@ import com.meli.galaxias.server.core.solarSystem.Point;
 import com.meli.galaxias.server.core.service.model.ISolarSystem;
 
 public class MaxRain implements ICalculateForecast{
-	double perimetroMaximo;
+	double maxPerimeter;
 	long day;
 	
 	public MaxRain(){
-		perimetroMaximo = 0;
+		maxPerimeter = 0;
 		day = 0;
 	}
 	
@@ -22,15 +22,15 @@ public class MaxRain implements ICalculateForecast{
 		if (anterior.isMatch()){//este calculo requiere que el calculo anterior que se ejecuta sea PeriodoLuvia
 			if (galaxi.getPlanets().size()<3)
 				throw new MaxRainExecption("Do not execute this calculator with minus three planet.");
-			double perimetro=0;
+			double perimeter=0;
 			List<Planet> planetas = galaxi.getPlanets();
 			for (int i = 0; i< planetas.size() - 1; i++){
-				perimetro = perimetro + distancia(planetas.get(i).getPosition(), planetas.get(i+1).getPosition());
+				perimeter = perimeter + distance(planetas.get(i).getPosition(), planetas.get(i+1).getPosition());
 			}
 			//calculo la distancia entre el primer y ultimo planeta
-			perimetro = perimetro + distancia(planetas.get(0).getPosition(), planetas.get(planetas.size()-1).getPosition());
-			if (perimetro > perimetroMaximo){
-				perimetroMaximo = perimetro;
+			perimeter = perimeter + distance(planetas.get(0).getPosition(), planetas.get(planetas.size()-1).getPosition());
+			if (perimeter > maxPerimeter){
+				maxPerimeter = perimeter;
 				this.day = day;
 			}
 		}
@@ -38,24 +38,24 @@ public class MaxRain implements ICalculateForecast{
 		return null;
 	}
 
-	public boolean excluirOtros() {
+	public boolean excludeOther() {
 		return false;
 	}
 	
 	
 	
-	private double distancia (Point p1, Point p2){
+	protected double distance (Point p1, Point p2){
 		double cuadradoX = Math.pow(p2.getX() - p1.getX(),2);
 		double cuadradoY = Math.pow(p2.getY() - p1.getY(),2);
 		return Math.sqrt(cuadradoX + cuadradoY);
 	}
 
 	public Result getFinalResult() {
-		Result resultado = new Result();
-		resultado.setMatch(true);
-		resultado.setDay(day);
-		resultado.setMessage(Result.CLIMA_LLUVIA_INTENSA);
-		return resultado;
+		Result result = new Result();
+		result.setMatch(true);
+		result.setDay(day);
+		result.setMessage(Result.CLIMA_LLUVIA_INTENSA);
+		return result;
 	}
 
 }

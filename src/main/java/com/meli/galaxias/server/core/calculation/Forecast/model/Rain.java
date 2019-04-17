@@ -9,27 +9,27 @@ import com.meli.galaxias.server.core.service.model.ISolarSystem;
 public class Rain implements ICalculateForecast {
 
 	public Result execute(ISolarSystem galaxi, long day, Result anterior) {
-		Polygon poligono = new Polygon();
+		Polygon polygon = new Polygon();
 		for (Planet planeta:galaxi.getPlanets()){
-			Point punto = planeta.getPosition();
-			poligono.addPoint((int)punto.getX(), (int)punto.getY());
+			Point point = planeta.getPosition();
+			polygon.addPoint((int)point.getX(), (int)point.getY());
 		}
 		
-		boolean esLLuvia = poligono.contains(galaxi.getSun().getPosition().getX(), galaxi.getSun().getPosition().getY());
+		boolean isRain = polygon.contains(galaxi.getSun().getPosition().getX(), galaxi.getSun().getPosition().getY());
 		
-		Result resultado = new Result();
-		if (esLLuvia){
-			resultado.setMatch(true);
-			resultado.setMessage(Result.CLIMA_LLUVIA);
+		Result result = new Result();
+		if (isRain){
+			result.setMatch(true);
+			result.setMessage(Result.CLIMA_LLUVIA);
 		}else{
-			resultado.setMatch(false);
-			resultado.setMessage(Result.CLIMA_SOL);
+			result.setMatch(false);
+			result.setMessage(Result.CLIMA_SOL);
 		}
 			
-		return resultado;
+		return result;
 	}
 
-	public boolean excluirOtros() {
+	public boolean excludeOther() {
 		return false;
 	}
 

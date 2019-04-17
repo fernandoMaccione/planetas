@@ -13,10 +13,10 @@ import com.meli.galaxias.server.core.exception.ServiceException;
 public class SolarSytemProcess {
 	private long idProcess;
 	private ISolarSystem sSolar;
-	private List<ICalculate> calculo;
+	private List<ICalculate> calculate;
 	private int firtDay;
 	private int lastDay;
-	private HashMap<String, List<CalculationPredictionDTO>> result;
+	protected HashMap<String, List<CalculationPredictionDTO>> result;
 	public int getFirtDay() {
 		return firtDay;
 	}
@@ -35,25 +35,25 @@ public class SolarSytemProcess {
 	public void setGalaxy(ISolarSystem galaxy) {
 		this.sSolar = galaxy;
 	}
-	public List<ICalculate> getCalculo() {
-		return calculo;
+	public List<ICalculate> getCalculate() {
+		return calculate;
 	}
-	public void setCalculo(List<ICalculate> calculo) {
-		this.calculo = calculo;
+	public void setCalculate(List<ICalculate> calculo) {
+		this.calculate = calculo;
 	}
 	
 	public void executeProcess() throws ServiceException {		
 		
 		result = new HashMap<String, List<CalculationPredictionDTO>> ();
-		for (ICalculate calculo:calculo){
+		for (ICalculate calculo:calculate){
 			//Chequeo si ya no lo tengo almacenado en la base
-			List<CalculationPredictionDTO> calculos = CalculationPredictionDAO.getCalculation(idProcess, calculo.getCode());
-			if (calculos == null){
+			List<CalculationPredictionDTO> calculations = CalculationPredictionDAO.getCalculation(idProcess, calculo.getCode());
+			if (calculations == null){
 				//Si no vino nada de la base, los genero y los guardo.
-				calculos = generate(calculo);				
-				CalculationPredictionDAO.save(calculos);
+				calculations = generate(calculo);				
+				CalculationPredictionDAO.save(calculations);
 			}
-			result.put(calculo.getCode(), calculos);
+			result.put(calculo.getCode(), calculations);
 		}		
 	}
 	
@@ -61,53 +61,54 @@ public class SolarSytemProcess {
 		return result.get(codeCal);
 	}
 	
-	private List<CalculationPredictionDTO> generate(ICalculate calculo) throws ServiceException {		
+	private List<CalculationPredictionDTO> generate(ICalculate cal) throws ServiceException {		
 		
 		List<CalculationPredictionDTO> res = new ArrayList<CalculationPredictionDTO>();
 		
 		for (int i =firtDay; i<=lastDay; i++){
-			CalculationPredictionDTO resutlDto = calculo.execute(sSolar, i);
+			System.out.println("Calculando dia: " + String.valueOf(i));
+			CalculationPredictionDTO resutlDto = cal.execute(sSolar, i);
 			resutlDto.setIdProcess(idProcess);
 			if (resutlDto.getResult() == null)
-				throw new ServiceException("The calculation " + calculo.getCode() + ", return null at day: " + String.valueOf(i));
+				throw new ServiceException("The calculation " + cal.getCode() + ", return null at day: " + String.valueOf(i));
 			
-			addCalculo(resutlDto, res);
+			addCalculation(resutlDto, res);
 		}
 		//Existen calculos que recien tienen disponible su resultado, al finalizar el enalisis de todo el periodo (ej: maxima lluva)
-		addCalculo (calculo.getFinalResult(sSolar), res);		
+		addCalculation (cal.getFinalResult(sSolar), res);		
 		
 		return res;
 	}
 	
-	private void addCalculo(List<CalculationPredictionDTO> finalResult, List<CalculationPredictionDTO> result) {
+	private void addCalculation(List<CalculationPredictionDTO> finalResult, List<CalculationPredictionDTO> result) {
 		for (CalculationPredictionDTO r:finalResult){
-			addCalculo (r, result);
+			addCalculation (r, result);
 		}
 	}
-	private void addCalculo(CalculationPredictionDTO r, List<CalculationPredictionDTO> cResults) {
+	protected void addCalculation(CalculationPredictionDTO dto, List<CalculationPredictionDTO> cResults) {
 		
 		/**
 		 * La idea de este metodo es que vaya agrupando el resultado de un calculo de un dia en un periodo de tiempo
 		 */
 		
 		CalculationPredictionDTO last = (cResults.size()<1?null:cResults.get(cResults.size()-1));
-		if (last != null && last.getResult().equals(r.getResult())){ //Si el resultado del calculo fue el mismo, entonces lo sumo como un perido de tiempo
-			last.setLastDay(r.getDay());
+		if (last != null && last.getResult().equals(dto.getResult())){ //Si el resultado del calculo fue el mismo, entonces lo sumo como un perido de tiempo
+			last.setLastDay(dto.getDay());
 		}else{
-			r.setLastDay(r.getDay());
-			cResults.add(r);
+			dto.setLastDay(dto.getDay());
+			cResults.add(dto);
 		}
 	}
 	
-	public List<CalculationPredictionDTO> getPrediction(String codeCalulo, String filter){
-		List<CalculationPredictionDTO> list = result.get(codeCalulo);
+	public List<CalculationPredictionDTO> getPrediction(String codeCal, String filter){
+		List<CalculationPredictionDTO> list = result.get(codeCal);
 		List<CalculationPredictionDTO> listFilter = list.parallelStream().filter(t -> t.getResult() == filter)
 				.collect(Collectors.toList());
 		return listFilter;
 	}
 	
-	public CalculationPredictionDTO getOnePrediction(String codeCalulo, String filter) throws NotFoundException{
-		List<CalculationPredictionDTO> list = result.get(codeCalulo);
+	public CalculationPredictionDTO getOnePrediction(String codeCal, String filter) throws NotFoundException{
+		List<CalculationPredictionDTO> list = result.get(codeCal);
 		CalculationPredictionDTO dto = list.parallelStream().filter(t -> t.getResult() == filter)
 				.findFirst()
 				.orElse(null);
@@ -117,8 +118,8 @@ public class SolarSytemProcess {
 		return dto;
 	}
 	
-	public CalculationPredictionDTO getByDay(String codeCalulo, int day) throws NotFoundException{
-		List<CalculationPredictionDTO> list = result.get(codeCalulo);
+	public CalculationPredictionDTO getByDay(String codeCal, int day) throws NotFoundException{
+		List<CalculationPredictionDTO> list = result.get(codeCal);
 		CalculationPredictionDTO dto = list.parallelStream().filter(t -> day >= t.getDay() && day <= t.getLastDay()  )
 				.findFirst()
 				.orElse(null);
@@ -128,8 +129,8 @@ public class SolarSytemProcess {
 		return dto;
 	}
 
-	public Long countPeriod(String codeCalulo, String filter){
-		List<CalculationPredictionDTO> list = result.get(codeCalulo);
+	public Long countPeriod(String codeCal, String filter){
+		List<CalculationPredictionDTO> list = result.get(codeCal);
 		long count = list.parallelStream().filter(t -> t.getResult() == filter)
 				.count();
 		return count;

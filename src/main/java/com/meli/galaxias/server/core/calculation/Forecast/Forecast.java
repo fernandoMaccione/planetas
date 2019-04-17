@@ -27,13 +27,13 @@ public class Forecast implements ICalculate {
 		Result result= null;
 		boolean calculado = false;
 		double precicion = (1/ (double)Config.PRECICION_CALCULE);
-		for (double i = day; i<day+.95; i = i + precicion){
+		for (double i = day; i<day+.99; i = i + precicion){
 			galaxy.setSimlateDay(i);
 			for (ICalculateForecast calculo:calculos){
 				Result aux = calculo.execute(galaxy, day, result);
 				if (aux != null)
 					result = aux;
-				if (result.isMatch() && calculo.excluirOtros()){ 
+				if (result.isMatch() && calculo.excludeOther()){ 
 					calculado = true;
 					break;
 				}

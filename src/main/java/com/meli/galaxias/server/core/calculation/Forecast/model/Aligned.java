@@ -7,26 +7,26 @@ public class Aligned implements ICalculateForecast {
 
 
 	public Result execute(ISolarSystem galaxi, long day, Result anterior) {
-		boolean alineados = false;
-		Result resultado = new Result();
+		boolean alined = false;
+		Result result = new Result();
 		for (int i = 0; i < galaxi.getPlanets().size() - 2; i++){
-			alineados = calculoRecta (galaxi.getPlanets().get(i), galaxi.getPlanets().get(i + 1),galaxi.getPlanets().get(i + 2));
+			alined = calculateStraight (galaxi.getPlanets().get(i), galaxi.getPlanets().get(i + 1),galaxi.getPlanets().get(i + 2));
 		}
-		if (alineados){
-			resultado.setMatch(true);
-			boolean conElSol = calculoRecta (galaxi.getSun(), galaxi.getPlanets().get(0),galaxi.getPlanets().get(1));
+		if (alined){
+			result.setMatch(true);
+			boolean conElSol = calculateStraight (galaxi.getSun(), galaxi.getPlanets().get(0),galaxi.getPlanets().get(1));
 			if (conElSol){
-				resultado.setMessage(Result.CLIMA_OPTIMO);
+				result.setMessage(Result.CLIMA_OPTIMO);
 				//System.out.println("Clima Optimo dia; " + String.valueOf(day));
 			}else{
-				resultado.setMessage(Result.CLIMA_SEQUIA);
+				result.setMessage(Result.CLIMA_SEQUIA);
 				//System.out.println("Sequia dia; " + String.valueOf(day));
 			}
 		}
-		return resultado;
+		return result;
 	}
 
-	private boolean calculoRecta (CelestialBody c1, CelestialBody c2, CelestialBody c3){
+	private boolean calculateStraight (CelestialBody c1, CelestialBody c2, CelestialBody c3){
 		double tangecteEnC1 = 0;
 		if ((c2.getPosition().getX() - c1.getPosition().getX())!=0)
 			tangecteEnC1 = (c2.getPosition().getY() - c1.getPosition().getY()) / (c2.getPosition().getX() - c1.getPosition().getX());
@@ -42,7 +42,7 @@ public class Aligned implements ICalculateForecast {
 		return tangecteEnC1 == tangenteEnC2;
 	}
 
-	public boolean excluirOtros() {
+	public boolean excludeOther() {
 
 		return true; //Si en este calculo se detectan que estan alineados, no tiene sentido realizar los demas.
 	}

@@ -24,7 +24,7 @@ public class FactoryGalaxyCalculation {
 		
 		List<ICalculate> calculations = new ArrayList<ICalculate>();
 		calculations.add(new Forecast());
-		gc.setCalculo(calculations);
+		gc.setCalculate(calculations);
 		colCG.add(gc);
 		
 		

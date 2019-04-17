@@ -1,6 +1,7 @@
 package com.meli.galaxias.web;
 import static spark.Spark.get;
 import static spark.Spark.port;
+import static spark.Spark.stop;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.meli.galaxias.common.Config;
@@ -19,11 +20,16 @@ public class Api {
 		get("/predicciones", (req, res) -> procesarGet(req, res, new ForecastResource()));
 	}
 	
+	public static void stopServer(){
+		stop();
+	}
+	
 	private static Object procesarGet(Request req, Response res, Process proceso){
 	//	LogTimeMethod logMethod = new LogTimeMethod();
+		Long timeInt = System.currentTimeMillis();
 		try {
 			JsonObject json = new JsonObject();
-			String errores = "";
+			String errores = "";			
 			try{			
 				
 				Object r = proceso.get(req, res, json);
@@ -48,7 +54,10 @@ public class Api {
 			
 			return json.toString();
 		} finally {
-			//logMethod.finish();
+			Long timeLast = System.currentTimeMillis();
+			System.out.println("The resource " + proceso.getClass().getSimpleName() + " responded " 
+					+ String.valueOf((timeLast - timeInt)/1000d) + " second.");
+			
 		}
 	}
 }
