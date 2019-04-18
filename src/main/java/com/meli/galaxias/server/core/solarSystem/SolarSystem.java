@@ -3,7 +3,9 @@ package com.meli.galaxias.server.core.solarSystem;
 import java.util.List;
 
 import com.meli.galaxias.server.core.service.model.ISolarSystem;
-
+/*Esta clase representa a  un sistema solar, y tiene la responsablidad de hacer girar a los planetas, en base a un dia dado
+ * 
+ */
 public  class SolarSystem implements ISolarSystem{
 	private String name;
 	private Sun sun;

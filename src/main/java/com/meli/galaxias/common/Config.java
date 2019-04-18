@@ -34,5 +34,5 @@ public class Config {
 	 */
 	public static final int PRECICION_CALCULE = 24  * 60 *2;    
 	
-	public static final int SERVER_PORT = 8181;
+	public static final int SERVER_PORT = 80;
 }

@@ -9,7 +9,14 @@ import com.meli.galaxias.common.dao.CalculationPredictionDAO;
 import com.meli.galaxias.common.dto.CalculationPredictionDTO;
 import com.meli.galaxias.server.core.exception.NotFoundException;
 import com.meli.galaxias.server.core.exception.ServiceException;
-
+/*
+ * En esta clase se define lo que es un "proceso".
+ * En un proceso se dice sobre que sistema solar se van a realizar los calculos (ISolarSystem), en que periodo de tiempo y que calculos hay que efectuarle
+ * Se encarga de realizar la ejecución de los mismo y mantener los resultados para su posterior consulta. Ya sea en cache o base de datos.
+ * ICalculate, es un tipo de calculo a efectuar. Puede ser Forecast (como el que plantea el ejercio) o cualquier otro tipo que implemente la interfaz.
+ * 
+ *  Ya que los resultados son uno por dia por calculo, la clase se va a encargar de agruparlos para ir formando los periodos de tiempo.
+ */
 public class SolarSytemProcess {
 	private long idProcess;
 	private ISolarSystem sSolar;
@@ -45,7 +52,8 @@ public class SolarSytemProcess {
 	public void executeProcess() throws ServiceException {		
 		
 		result = new HashMap<String, List<CalculationPredictionDTO>> ();
-		for (ICalculate calculo:calculate){
+		//Itereo cada calculo dado de alta.
+		for (ICalculate calculo:calculate){ 
 			//Chequeo si ya no lo tengo almacenado en la base
 			List<CalculationPredictionDTO> calculations = CalculationPredictionDAO.getCalculation(idProcess, calculo.getCode());
 			if (calculations == null){
@@ -64,7 +72,7 @@ public class SolarSytemProcess {
 	private List<CalculationPredictionDTO> generate(ICalculate cal) throws ServiceException {		
 		
 		List<CalculationPredictionDTO> res = new ArrayList<CalculationPredictionDTO>();
-		
+		//Itero por cada día y ejecuto el calculo.
 		for (int i =firtDay; i<=lastDay; i++){
 			System.out.println("Calculando dia: " + String.valueOf(i));
 			CalculationPredictionDTO resutlDto = cal.execute(sSolar, i);

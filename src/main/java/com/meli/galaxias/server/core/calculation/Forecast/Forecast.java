@@ -13,7 +13,12 @@ import com.meli.galaxias.server.core.calculation.Forecast.model.Result;
 import com.meli.galaxias.server.core.exception.ForecastExecption;
 import com.meli.galaxias.server.core.service.model.ICalculate;
 import com.meli.galaxias.server.core.service.model.ISolarSystem;
-
+/*
+ * clase de predicción de clima pedida por el ejercicio. 
+ * Esta clase lo que hace es pedirle al sistema solar que emule la posición de un momento e iterarla por los calculos (ICalculateForecast) que tenga registrados ejecutarlos y devolver sus resultados.
+ * Los calculos devuelven un objeto Result que dice el resultado del calculo y si excluye o no la ejecución los calculos siguientes (ejemplo, si están alineados, no tiene nungún sentido evaluar si el sol está dentro del triangulo).
+ * 
+ */
 public class Forecast implements ICalculate {
 	public static final String CODE = "FORECAST";
 	

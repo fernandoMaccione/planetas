@@ -8,7 +8,11 @@ import com.meli.galaxias.server.core.solarSystem.SolarSystem;
 import com.meli.galaxias.server.galaxiaLejana.planet.Betasoides;
 import com.meli.galaxias.server.galaxiaLejana.planet.Ferengis;
 import com.meli.galaxias.server.galaxiaLejana.planet.Vulcanos;
-
+/*
+ * Esta clase representa al sistema solar del ejercicio pedido. 
+ * Su existencia, practicamente es simbolica a lo igual que los planetas que estan relacionados a ellas 
+ * porque tranquilamente bien se podrian dar de alta en una base de datos todas las galaxias a las que se les desea realizar un calculo.  
+ */
 public class GalaxiaLejana extends SolarSystem{
 
 	public GalaxiaLejana() {
