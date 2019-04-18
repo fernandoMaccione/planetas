@@ -9,8 +9,11 @@ import com.meli.galaxias.server.galaxiaLejana.GalaxiaLejana;
 
 public class FactoryGalaxyCalculation {
 	/*
-	 * La idea es que en algun lado se relacionen las galaxias a las que se les necesita realizar algun tipo de analisis, 
-	 * con los calculos disponibles.
+	 * La idea es que en otra version, los procesos se persistan en algun lado y que esta clase me devuelva el proceso vigente. Es decir,
+	 * ahora se esta calculando del dia 0 a 10 años, pero tranquilamente bien se debería de poder dar de alta un nuevo proceso en algún lado,
+	 * que predisca otro periodo ejemplo, del año 10 al año 20.
+	 * 
+	 * POr ahora esto se encarga de construirme un proceso para calcular el Forecast en la "Galaxia lejana" del ejercicio.
 	 */
 	public static List<SolarSytemProcess> calculationRegistred(){
 		//dummy
