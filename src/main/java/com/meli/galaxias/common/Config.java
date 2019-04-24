@@ -26,13 +26,9 @@ public class Config {
 	
 	/*
 	 * intervalo por dia que se toma en cuenta para realizar los calculos. 
-		*Esta en cada 30 segundos. Obio que se le puede dar mas presicion, 
-		*pero como por ahora no estoy persistiendo los resultados, lo deje en 30 para que no tarde
-		*en levantar el servicio, ya que sino los puede recuperar, los recalcula.
-		*Igualmente, mas alla de la precision diaria que se tome para realizar el calculo, 
-		*el API va a tardar siempre lo mismo en responder. Ya que la consulta se hace sobre un resultado agrupado.
+		*Esta cada 0.5 segundos.
 	 */
-	public static final int PRECICION_CALCULE = 24  * 60 *2;    
+	public static final int PRECICION_CALCULE = 24  * 60 * 120;
 	
 	public static final int SERVER_PORT = 80;
 	public static final String PERSISTENCE_UNIT = "dataAcces";
