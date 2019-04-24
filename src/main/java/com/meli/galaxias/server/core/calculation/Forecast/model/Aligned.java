@@ -34,8 +34,8 @@ public class Aligned implements ICalculateForecast {
 		double tangenteEnC2 = 0;
 		if ((c3.getPosition().getX() - c2.getPosition().getX()) !=0)
 			tangenteEnC2 = (c3.getPosition().getY() - c2.getPosition().getY()) / (c3.getPosition().getX() - c2.getPosition().getX());
-		tangecteEnC1 = Math.round(tangecteEnC1 * 1000d)/1000d; 
-		tangenteEnC2 = Math.round(tangenteEnC2 * 1000d)/1000d;
+		tangecteEnC1 = Math.round(tangecteEnC1 * 100000d)/100000d; 
+		tangenteEnC2 = Math.round(tangenteEnC2 * 100000d)/100000d;
 		
 		//System.out.println("Eje X: " + String.valueOf(tangecteEnC1) + " Eje Y: "+ String.valueOf(tangenteEnC2));
 		

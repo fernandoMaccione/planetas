@@ -110,14 +110,14 @@ public class SolarSytemProcess {
 	
 	public List<CalculationPredictionDTO> getPrediction(String codeCal, String filter){
 		List<CalculationPredictionDTO> list = result.get(codeCal);
-		List<CalculationPredictionDTO> listFilter = list.parallelStream().filter(t -> t.getResult() == filter)
+		List<CalculationPredictionDTO> listFilter = list.parallelStream().filter(t -> t.getResult().equals(filter))
 				.collect(Collectors.toList());
 		return listFilter;
 	}
 	
 	public CalculationPredictionDTO getOnePrediction(String codeCal, String filter) throws NotFoundException{
 		List<CalculationPredictionDTO> list = result.get(codeCal);
-		CalculationPredictionDTO dto = list.parallelStream().filter(t -> t.getResult() == filter)
+		CalculationPredictionDTO dto = list.parallelStream().filter(t -> t.getResult().equals(filter))
 				.findFirst()
 				.orElse(null);
 		if (dto == null){
@@ -139,7 +139,7 @@ public class SolarSytemProcess {
 
 	public Long countPeriod(String codeCal, String filter){
 		List<CalculationPredictionDTO> list = result.get(codeCal);
-		long count = list.parallelStream().filter(t -> t.getResult() == filter)
+		long count = list.parallelStream().filter(t -> t.getResult().equals(filter))
 				.count();
 		return count;
 	}

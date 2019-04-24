@@ -4,3 +4,7 @@
 target/
 
 *.log
+
+eclipseLincSimpleDb/
+
+SolarSystemDB/

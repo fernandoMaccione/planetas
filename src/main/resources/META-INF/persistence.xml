@@ -11,7 +11,7 @@
 
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:derby:memory:eclipseLincSimpleDb;create=true" />
+				value="jdbc:derby:SolarSystemDB;create=true" />
             <property name="toplink.jdbc.user" value="root"/>
             <property name="toplink.jdbc.password" value="password"/>
 			<property name="eclipselink.ddl-generation" value="create-tables" />
