@@ -56,7 +56,7 @@ public class SolarSytemProcess {
 		for (ICalculate calculo:calculate){ 
 			//Chequeo si ya no lo tengo almacenado en la base
 			List<CalculationPredictionDTO> calculations = CalculationPredictionDAO.getCalculation(idProcess, calculo.getCode());
-			if (calculations == null){
+			if (calculations == null || calculations.isEmpty()){
 				//Si no vino nada de la base, los genero y los guardo.
 				calculations = generate(calculo);				
 				CalculationPredictionDAO.save(calculations);

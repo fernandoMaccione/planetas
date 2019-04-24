@@ -35,4 +35,5 @@ public class Config {
 	public static final int PRECICION_CALCULE = 24  * 60 *2;    
 	
 	public static final int SERVER_PORT = 80;
+	public static final String PERSISTENCE_UNIT = "dataAcces";
 }
