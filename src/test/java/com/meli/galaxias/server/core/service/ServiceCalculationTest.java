@@ -23,8 +23,8 @@ public class ServiceCalculationTest {
 		
 		SolarSytemProcess process = service.getSolarSystem(Config.GALAXIA_LEJANA);
 		assertTrue(process.countPeriod(Forecast.CODE, Result.CLIMA_LLUVIA).intValue() == 142);
-		assertTrue(process.getOnePrediction(Forecast.CODE, Result.CLIMA_LLUVIA_INTENSA).getDay() == 2265);
+		assertTrue(process.getOnePrediction(Forecast.CODE, Result.CLIMA_LLUVIA_INTENSA).getDay() == 345);
 		assertTrue(process.countPeriod(Forecast.CODE, Result.CLIMA_OPTIMO).intValue() == 61);
-		assertTrue(process.countPeriod(Forecast.CODE, Result.CLIMA_SEQUIA).intValue() == 223);		
+		assertTrue(process.countPeriod(Forecast.CODE, Result.CLIMA_SEQUIA).intValue() == 203);		
 	}
 }

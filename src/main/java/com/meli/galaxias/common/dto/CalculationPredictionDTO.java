@@ -1,12 +1,28 @@
 package com.meli.galaxias.common.dto;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class CalculationPredictionDTO {
+	@Id
+	@GeneratedValue
+	private Long id;
 	private String codeCalculate;
 	private String codeGalaxy;
 	private long idProcess;
 	private long day;
 	private long lastDay;
 	private String result;
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
 	public long getIdProcess() {
 		return idProcess;
